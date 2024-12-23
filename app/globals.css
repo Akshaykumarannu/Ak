@@ -1,0 +1,148 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer utilities {
+  .animate-gradient {
+    @apply bg-gradient-to-r from-primary via-accent to-secondary;
+  }
+}
+
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+    --primary: 322 100% 50%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 252 100% 60%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 262 83% 58%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 322 100% 50%;
+    --radius: 1rem;
+  }
+
+  .dark {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 322 100% 60%;
+    --primary-foreground: 222 47% 11%;
+    --secondary: 252 100% 70%;
+    --secondary-foreground: 222 47% 11%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 262 83% 68%;
+    --accent-foreground: 222 47% 11%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 322 100% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+.glass-effect {
+  @apply bg-background/50 backdrop-blur-md border border-border/50;
+}
+
+.gradient-text {
+  @apply bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent animate-gradient;
+}
+
+.gradient-border {
+  @apply relative before:absolute before:inset-0 before:-z-10 before:rounded-[calc(var(--radius)+1px)] 
+         before:p-[1px] before:bg-gradient-to-r before:from-primary before:via-accent before:to-secondary 
+         before:animate-gradient hover:before:opacity-80 transition-all;
+}
+
+.gradient-bg {
+  @apply bg-gradient-to-r from-primary/10 via-accent/10 to-secondary/10 
+         dark:from-primary/20 dark:via-accent/20 dark:to-secondary/20 animate-gradient;
+}
+
+.card-hover {
+  @apply hover:shadow-xl hover:shadow-primary/5 dark:hover:shadow-primary/10 
+         hover:border-primary/20 dark:hover:border-primary/30 
+         transition-all duration-300 ease-out;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.5s ease-out forwards;
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 300% 300%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.text-glow {
+  text-shadow: 0 0 20px var(--primary);
+}
+
+.glow-effect {
+  @apply relative after:absolute after:inset-0 after:rounded-[calc(var(--radius)+1px)] 
+         after:bg-gradient-to-r after:from-primary/50 after:via-accent/50 after:to-secondary/50 
+         after:opacity-0 after:blur-xl after:transition-opacity hover:after:opacity-100;
+}
